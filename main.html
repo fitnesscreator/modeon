@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Coach Header</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Kallisto', sans-serif;
+      background: #050A0B;
+      color: #FFFFFF;
+      overflow-x: hidden;
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0) 20%), /* Black fade at the bottom */
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), /* Original fade */
+    url('https://i.ibb.co/SJpVJ0q/B-2024-11-01-T165513-067.png') center 20% / cover no-repeat; /* Background image */
+  z-index: -1;
+}
+
+    .navbar {
+      width: 90%;
+      max-width: 1400px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
+    .navbar .logo {
+      color: #FF610C;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+
+    .navbar .menu {
+      display: flex;
+      gap: 2.4rem;
+      background: #1C1C1C;
+      padding: 10px 20px;
+      border-radius: 30px;
+    }
+
+    .navbar .menu a {
+      color: #FFFFFF;
+      text-decoration: none;
+      font-size: 1.2rem;
+      transition: color 0.3s;
+    }
+
+    .navbar .menu a:hover {
+      color: #FF610C;
+    }
+
+    .header-content {
+      text-align: center;
+      max-width: 900px;
+      margin: 100px auto 0 auto;
+    }
+
+    .header-content h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      text-transform: uppercase;
+      line-height: 1.2;
+    }
+
+    .header-content h1 span {
+      color: #FFFFFF;
+    }
+
+    .header-content p {
+      font-size: 1.2rem;
+      margin: 20px 0;
+      color: rgba(255, 255, 255, 0.8);
+    }
+
+    .highlight {
+      color: #FF610C;
+    }
+
+    .header-buttons {
+      margin-top: 20px;
+    }
+
+    .header-buttons a {
+      display: inline-block;
+      padding: 15px 30px;
+      margin: 10px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .header-buttons a:first-child {
+      color: #FFFFFF;
+      background: linear-gradient(to right, #FF610C, #FF840C);
+    }
+
+    .header-buttons a:first-child:hover {
+      background: linear-gradient(to right, #FF840C, #FF610C);
+      transform: scale(1.05);
+    }
+
+    .header-buttons a:last-child {
+      color: #ffffff;
+      border: 2px solid #FF610C;
+      background: transparent;
+    }
+
+    .header-buttons a:last-child:hover {
+      background: rgba(255, 97, 12, 0.1);
+      transform: scale(1.05);
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin-top: 30px;
+    }
+
+    .social-links a {
+      text-decoration: none;
+      transition: transform 0.3s;
+    }
+
+    .social-links img {
+      width: 30px;
+      height: 30px;
+      filter: brightness(0) invert(1);
+      transition: transform 0.3s;
+    }
+
+    .social-links a:hover img {
+      transform: scale(1.1);
+    }
+
+    @keyframes highlightAnimation {
+      0%, 66.66% {
+        color: #FFFFFF;
+      }
+      33.33% {
+        color: #FF610C;
+      }
+    }
+
+    .word1 {
+      animation: highlightAnimation 6s infinite;
+    }
+
+    .word2 {
+      animation: highlightAnimation 6s infinite;
+      animation-delay: 2s;
+    }
+
+    .word3 {
+      animation: highlightAnimation 6s infinite;
+      animation-delay: 4s;
+    }
+    
+    .about-section {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 100px 20px;
+      background: linear-gradient(to bottom, #000000, #411904);
+    }
+
+    .about-section .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      max-width: 1200px;
+    }
+
+    .about-section .image-container {
+      position: relative;
+      flex: 1 1 500px;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .about-section .image-container img {
+  width: 90%;
+  height: auto;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5); /* Default shadow */
+  transition: box-shadow 0.8s ease-in-out; /* Smooth fade-in and fade-out */
+}
+
+.about-section .image-container.neon img {
+  box-shadow: 0 0 20px rgba(255, 97, 12, 0.3), 0 0 35px rgba(255, 132, 12, 0.2), 0 0 20px rgba(255, 97, 12, 0.15); /* Even subtler glow */
+  animation: subtleNeonGlow 1.5s infinite alternate ease-in-out 0.8s; /* Start pulsating after smooth fade */
+}
+
+@keyframes subtleNeonGlow {
+  0% {
+    box-shadow: 0 0 10px rgba(255, 97, 12, 0.3), 0 0 15px rgba(255, 132, 12, 0.2), 0 0 20px rgba(255, 97, 12, 0.15);
+  }
+  100% {
+    box-shadow: 0 0 15px rgba(255, 132, 12, 0.25), 0 0 20px rgba(255, 97, 12, 0.2), 0 0 25px rgba(255, 132, 12, 0.15);
+  }
+}
+
+
+    .play-audio-button {
+      position: absolute;
+      bottom: 15px;
+      left: 40px;
+      width: 80px;
+      height: 80px;
+      background: linear-gradient(to right, #FF610C, #FF840C);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .play-audio-button:hover {
+      transform: scale(1.1);
+    }
+
+    .play-audio-button span {
+  display: block;
+  width: 0; /* Triangle has no width itself */
+  height: 0; /* Triangle has no height itself */
+  border-left: 25px solid #FFFFFF; /* Adjust the width of the triangle */
+  border-top: 15px solid transparent; /* Half of the height */
+  border-bottom: 15px solid transparent; /* Half of the height */
+  animation: none;
+}
+
+
+    .play-audio-button.playing span {
+      width: 25px;
+      height: 25px;
+      border: none;
+      background: #FFFFFF;
+      border-radius: 50%;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+        opacity: 1;
+      }
+      50% {
+        transform: scale(1.5);
+        opacity: 0.5;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .about-section .text-container {
+      flex: 2 1 600px;
+      color: rgba(255, 255, 255, 0.9);
+      text-align: left;
+    }
+
+    .about-section .text-container h2 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: #FF610C;
+      margin-bottom: 15px;
+    }
+
+    .about-section .text-container p {
+      font-size: 1.2rem;
+      line-height: 1.8;
+      margin-bottom: 15px;
+    }
+
+    .about-section .text-container .highlight {
+      color: #FF610C;
+      font-weight: bold;
+    }
+
+    .about-section .text-container a {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: bold;
+      background: linear-gradient(to right, #FF610C, #FF840C);
+      color: #FFFFFF;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .about-section .text-container a:hover {
+      background: linear-gradient(to right, #FF840C, #FF610C);
+      transform: scale(1.05);
+    }
+    
+    .programs-section {
+      padding: 60px 25px;
+      background: #411904;
+      color: #FFFFFF;
+      text-align: center;
+    }
+    
+    .programs-section h2 {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #ffffff; /* Vibrant title color */
+  text-transform: uppercase;
+  margin-bottom: 40px;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  animation: fadeInSlideUp 1.2s ease-in-out;
+}
+
+
+    .program-tabs {
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+      margin-bottom: 40px;
+      border: 2px solid #FF610C;
+      border-radius: 30px;
+      overflow: hidden;
+      padding: 5px;
+      background: transparent;
+    }
+
+    .program-tab {
+      flex: 1;
+      text-align: center;
+      padding: 15px 20px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      color: #FFFFFF;
+      cursor: pointer;
+      transition: color 0.3s;
+      z-index: 1;
+      position: relative;
+    }
+
+
+    .program-tabs::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: calc(100% / 3); /* Dynamically fit each tab without extra margin */
+  background: linear-gradient(to right, #FF610C, #FF840C);
+  border-radius: 29px;
+  transition: transform 0.3s ease;
+  z-index: 0;
+  transform: var(--tab-indicator-transform, translateX(0));
+}
+
+
+    .program-tab:nth-child(1).active ~ .program-tabs::before {
+      transform: translateX(0%);
+    }
+
+    .program-tab:nth-child(2).active ~ .program-tabs::before {
+      transform: translateX(100%);
+    }
+
+    .program-tab:nth-child(3).active ~ .program-tabs::before {
+      transform: translateX(200%);
+    }
+
+    .program-content {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 2px solid #FF610C;
+      border-radius: 15px;
+      background: transparent;
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 1.2rem;
+      line-height: 1.8;
+      transition: border-color 0.3s;
+    }
+    
+    .testimonials-section {
+    padding: 60px 25px;
+    background: linear-gradient(to bottom, #411904, #050A0B);
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.testimonials-section .section-title {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+}
+
+.testimonials-container {
+    display: flex;
+    flex-wrap: nowrap; /* Disable wrapping to force all items into one row */
+    gap: 30px; /* Add space between the cards */
+    max-width: 1000px;
+    margin: 0 auto;
+    justify-content: space-between; /* Ensure even spacing between cards */
+}
+
+.testimonial {
+    flex: 1; /* Make each card take equal space */
+    max-width: calc(33.33% - 20px); /* Restrict width to exactly 1/3 of the row minus spacing */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background: rgba(255, 97, 12, 0.1);
+    padding: 20px;
+    border-radius: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s;
+}
+
+.testimonial:hover {
+    transform: scale(1.05);
+}
+
+.testimonial-image img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 97, 12, 0.6);
+    margin-bottom: 20px;
+}
+
+.testimonial-quote {
+    font-size: 1.2rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 15px;
+}
+
+.testimonial-author {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #FF610C;
+}
+
+  @media (max-width: 768px) {
+  .testimonials-section {
+    padding: 40px 20px;
+  }
+
+  .testimonials-section .section-title {
+    font-size: 2rem; /* Reduce title size for smaller screens */
+    margin-bottom: 20px; /* Adjust spacing below the title */
+    text-align: center; /* Center-align title for smaller viewports */
+    line-height: 1.2; /* Improve title readability */
+  }
+
+  .testimonials-container {
+    flex-direction: column; /* Ensure testimonials stack vertically */
+    gap: 20px; /* Adjust gap between testimonials */
+  }
+
+  .testimonial {
+    padding: 15px;
+    margin: 0 auto; /* Center-align testimonials */
+    width: 100%; /* Take full width of the container */
+    max-width: 320px; /* Optional: Set a max-width for better layout */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3); /* Slightly reduce shadow intensity */
+  }
+
+  .testimonial-image img {
+    width: 80px;
+    height: 80px;
+  }
+
+  .testimonial-quote {
+    font-size: 1rem; /* Reduce font size for smaller screens */
+    margin-bottom: 10px;
+  }
+
+  .testimonial-author {
+    font-size: 0.9rem; /* Adjust author font size */
+  }
+}
+
+
+    
+    .contact-section {
+    padding: 60px 25px;
+    background: #050A0B;
+    color: #FFFFFF;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 30px;
+  }
+
+  .contact-container {
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: flex-start;
+  }
+
+  .contact-info {
+    flex: 1;
+  }
+
+  .contact-title {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #FF610C;
+    margin-bottom: 20px;
+  }
+
+  .contact-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 20px;
+  }
+    
+    .contact-social-links {
+  display: flex;
+  justify-content: left;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.contact-social-links a {
+  text-decoration: none;
+  transition: transform 0.3s;
+}
+
+.contact-social-links img {
+  width: 30px;
+  height: 30px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s;
+}
+
+.contact-social-links a:hover img {
+  transform: scale(1.1);
+}
+
+
+  .contact-form {
+    flex: 1;
+    background: #411904;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .contact-form form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .contact-form .form-group {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .contact-form label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #FF610C;
+    margin-bottom: 5px;
+  }
+
+  .contact-form input, .contact-form textarea {
+    width: 95%;
+    padding: 12px;
+    border: 2px solid #FF610C;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.9);
+    color: #050A0B;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+
+  .contact-form input:focus, .contact-form textarea:focus {
+    border-color: #FF840C;
+    outline: none;
+  }
+
+  .contact-form .submit-button {
+    padding: 15px;
+    border: none;
+    border-radius: 40px;
+    background: linear-gradient(to right, #FF610C, #FF840C);
+    color: #FFFFFF;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s, background 0.3s;
+  }
+
+  .contact-form .submit-button:hover {
+    background: linear-gradient(to right, #FF840C, #FF610C);
+    transform: scale(1.05);
+  }
+    
+    /* Custom Scrollbar Styling */
+::-webkit-scrollbar {
+  width: 12px; /* Width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: #050A0B; /* Dark background matching website's theme */
+  border-radius: 10px; /* Rounded edges for the track */
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(to bottom, #FF610C, #FF840C); /* Gradient matching website's buttons */
+  border-radius: 10px; /* Rounded corners for thumb */
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5); /* Slight inner shadow for a 3D effect */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(to bottom, #FF840C, #FF610C); /* Reversed gradient on hover */
+  box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7); /* Enhanced shadow on hover */
+}
+
+/* Optional: Disable scrollbar appearance on overflow-hidden areas */
+::-webkit-scrollbar-corner {
+  background: #050A0B; /* Matches the track */
+}
+
+
+    @media (max-width: 768px) {
+  .header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+    padding: 0px;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navbar .logo {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .navbar .menu {
+    flex-direction: row;
+    gap: 1rem;
+  }
+
+  .navbar .menu a {
+    font-size: 1rem;
+  }
+
+  .header-content {
+    margin-top: 80px;
+    padding: 0;
+  }
+
+  .header-content h1 {
+    font-size: 3.2rem;
+    line-height: 1.3;
+    margin-bottom: 10px;
+  }
+
+  .header-content p {
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+
+  .header-buttons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0px;
+    margin-bottom: 20px;
+  }
+
+  .header-buttons a {
+    padding: 10px 20px;
+    font-size: 1.2rem;
+  }
+
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .social-links img {
+    width: 24px;
+    height: 24px;
+  }
+
+  .header::before {
+  background-position: 23% center; /* Adjust horizontal alignment to 23% */
+  background-size: cover;
+  }
+
+}
+
+    @media (max-width: 768px) {
+  .about-section {
+    padding: 0px 15px;
+    text-align: center;
+  }
+
+  .about-section .content {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .about-section .image-container {
+    flex: 0 0 auto;
+    width: 100%;
+    max-width: 300px;
+    text-align: center;
+    position: relative;
+  }
+
+  .about-section .image-container img {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+  }
+
+  .about-section .play-audio-button {
+    position: absolute;
+    bottom: 15px;
+    left: 18px;
+    width: 60px;
+    height: 60px;
+    transform: none;
+  }
+
+  .about-section .text-container {
+    flex: 0 0 auto;
+    width: 100%;
+    text-align: center;
+  }
+
+  .about-section .text-container h2 {
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+  }
+
+  .about-section .text-container p {
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-bottom: 10px;
+  }
+
+  .about-section .text-container a {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .programs-section {
+    padding: 40px 15px; /* Reduce padding for smaller screens */
+  }
+
+  .programs-section h2 {
+    font-size: 2rem; /* Make the title smaller */
+    margin-bottom: 30px;
+  }
+
+  .program-tabs {
+    padding: 3px; /* Reduce padding */
+    border-radius: 20px; /* Adjust border radius */
+    overflow: hidden; /* Maintain the design */
+  }
+
+  .program-tab {
+    font-size: 1rem; /* Smaller font size for tabs */
+    padding: 10px 15px; /* Adjust padding */
+  }
+
+  .program-tabs::before {
+    width: calc(100% / 3); /* Dynamically fit each tab */
+    border-radius: 19px; /* Match tabs' border radius */
+  }
+
+  .program-content {
+    font-size: 1rem; /* Adjust content font size */
+    padding: 15px; /* Reduce padding for content */
+    border-radius: 10px; /* Adjust border radius */
+  }
+}
+
+    @media (max-width: 768px) {
+  .contact-section {
+    flex-direction: column;
+    gap: 20px;
+    padding: 40px 20px;
+  }
+
+  .contact-container {
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+  }
+
+  .contact-info {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .contact-title {
+    font-size: 2rem;
+    margin-bottom: 15px;
+  }
+
+  .contact-description {
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .contact-form {
+    width: 95%;
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  .contact-form input, .contact-form textarea {
+    width: 93%;
+    font-size: 1rem;
+  }
+
+  .contact-form label {
+    font-size: 1rem;
+  }
+
+  .contact-form .submit-button {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+      
+      .contact-social-links {
+    flex-wrap: wrap; /* Allow icons to wrap to the next line */
+    gap: 15px; /* Increase the gap for better spacing */
+    justify-content: center; /* Center-align the icons */
+  }
+
+  .contact-social-links img {
+    width: 24px; /* Reduce icon size for smaller screens */
+    height: 24px;
+  }
+
+  .contact-social-links a:hover img {
+    transform: scale(1.05); /* Slightly smaller hover effect for smaller screens */
+  }
+}
+
+    html {
+  scroll-behavior: smooth;
+}
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="navbar">
+      <div class="logo">Ryan Steel</div>
+      <div class="menu">
+        <a href="#about">About Me</a>
+<a href="#programs">Programs</a>
+<a href="#testimonials">Testimonials</a>
+<a href="#contact">Contact</a>
+      </div>
+    </nav>
+    <div class="header-content">
+      <h1>
+        <span class="word1">Build</span> 
+        <span class="word2">Your</span> 
+        <span class="word3">Strength</span>
+      </h1>
+      <p>Join the journey to a healthier, stronger you</p>
+      <div class="header-buttons">
+        <a href="#">Start Training</a>
+        <a href="#">Contact Me</a>
+      </div>
+      <div class="social-links">
+        <a href="#"><img src="https://i.ibb.co/whYw9tf/Instagram-icon-png.png" alt="Instagram"></a>
+        <a href="#"><img src="https://i.ibb.co/JvLtTqq/Tik-Tok-icon-png.png" alt="TikTok"></a>
+        <a href="#"><img src="https://i.ibb.co/9nFXH9w/Facebook-icon-png.png" alt="Facebook"></a>
+      </div>
+    </div>
+  </header>
+  
+  <section id="about" class="about-section">
+    <div class="content">
+      <div class="image-container">
+        <img src="https://i.ibb.co/52gvSxN/B-2024-10-07-T203006-441.png" alt="Fitness Coach">
+        <div class="play-audio-button" onclick="toggleAudio()">
+          <span></span>
+        </div>
+      </div>
+      <div class="text-container">
+        <h2>About Me</h2>
+        <p>Welcome! I'm <span class="highlight">Ryan Steel</span>, a passionate fitness coach committed to transforming lives. My approach blends personalized strategies with motivational coaching to help you conquer your fitness goals.</p>
+        <p>From building strength to boosting confidence, I aim to make every step of your journey rewarding. Let's redefine what it means to be your best self, one milestone at a time.</p>
+        <a href="#">Get in touch</a>
+      </div>
+    </div>
+  </section>
+  
+  <section id="programs" class="programs-section">
+    <h2>My Programs</h2>
+    <div class="program-tabs">
+      <div class="program-tab active" data-program="training">Personal Training</div>
+      <div class="program-tab" data-program="nutrition">Nutrition Plans</div>
+      <div class="program-tab" data-program="coaching">Online Coaching</div>
+    </div>
+    <div class="program-content">
+      Achieve your fitness goals with tailored one-on-one coaching that’s designed to match your unique needs and preferences. Together, we’ll create a structured plan that builds strength, endurance, and confidence. Whether you’re just starting out or looking to elevate your performance, this personalized experience guarantees measurable progress.
+    </div>
+  </section>
+  <audio id="audio" src="your-audio-file.mp3"></audio>
+  
+  <section id="testimonials" class="testimonials-section">
+  <h2 class="section-title">What My Clients Say</h2>
+  <div class="testimonials-container">
+    <div class="testimonial">
+      <div class="testimonial-image">
+        <img src="https://i.ibb.co/bLpLg7t/Elite-8.png" alt="Client 1">
+      </div>
+      <div class="testimonial-text">
+        <p class="testimonial-quote">"Ryan's program transformed my life! His personalized coaching gave me the confidence to push boundaries and achieve goals I never thought possible."</p>
+        <p class="testimonial-author">Blake R</p>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-image">
+        <img src="https://i.ibb.co/Lkq3Xht/Elite-10.png" alt="Client 2">
+      </div>
+      <div class="testimonial-text">
+        <p class="testimonial-quote">"The nutrition plans Ryan provided were a game changer! I feel healthier and more energized than ever. Highly recommended!"</p>
+        <p class="testimonial-author">Mark J</p>
+      </div>
+    </div>
+
+    <div class="testimonial">
+      <div class="testimonial-image">
+        <img src="https://i.ibb.co/qN50JWK/Elite-9.png" alt="Client 3">
+      </div>
+      <div class="testimonial-text">
+        <p class="testimonial-quote">"I love the flexibility of Ryan's online coaching. It fits perfectly into my hectic schedule, and the results are amazing!"</p>
+        <p class="testimonial-author">Jack L</p>
+      </div>
+    </div>
+  </div>
+</section>
+  
+  <section id="contact" class="contact-section">
+  <div class="contact-container">
+    <div class="contact-info">
+      <h2 class="contact-title">Get in Touch</h2>
+      <p class="contact-description">Have questions or want to start your fitness journey? Reach out to me, and I'll get back to you as soon as possible.</p>
+      <p><strong>Email:</strong> ryan.steel@example.com</p>
+<div class="contact-social-links">
+  <a href="#"><img src="https://i.ibb.co/whYw9tf/Instagram-icon-png.png" alt="Instagram"></a>
+  <a href="#"><img src="https://i.ibb.co/JvLtTqq/Tik-Tok-icon-png.png" alt="TikTok"></a>
+  <a href="#"><img src="https://i.ibb.co/9nFXH9w/Facebook-icon-png.png" alt="Facebook"></a>
+</div>
+    </div>
+    <div class="contact-form">
+      <form action="#" method="post">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Enter your name" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" name="email" placeholder="Enter your email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="message">Your Message</label>
+          <textarea id="message" name="message" rows="5" placeholder="Enter your message" required></textarea>
+        </div>
+
+        <button type="submit" class="submit-button">Send Message</button>
+      </form>
+    </div>
+  </div>
+</section>
+  
+  <script>
+    let isPlaying = false;
+const audio = document.getElementById('audio');
+const button = document.querySelector('.play-audio-button');
+const imageContainer = document.querySelector('.about-section .image-container');
+
+function toggleAudio() {
+  if (isPlaying) {
+    audio.pause();
+    button.classList.remove('playing');
+    imageContainer.classList.remove('neon'); // Smoothly fade out neon
+  } else {
+    audio.play();
+    button.classList.add('playing');
+    imageContainer.classList.add('neon'); // Smoothly fade in neon
+  }
+  isPlaying = !isPlaying;
+}
+
+audio.addEventListener('ended', () => {
+  button.classList.remove('playing');
+  imageContainer.classList.remove('neon'); // Smoothly fade out neon when audio ends
+  isPlaying = false;
+});
+
+
+
+  </script>
+  <script>
+   document.addEventListener("DOMContentLoaded", () => {
+  const tabs = document.querySelectorAll(".program-tab");
+  const tabsContainer = document.querySelector(".program-tabs");
+  const content = document.querySelector(".program-content");
+
+  const programDetails = {
+    training: "Achieve your fitness goals with tailored one-on-one coaching that’s designed to match your unique needs and preferences. Together, we’ll create a structured plan that builds strength, endurance, and confidence. Whether you’re just starting out or looking to elevate your performance, this personalized experience guarantees measurable progress.",
+    nutrition: "Fuel your body the right way with customized meal plans designed to complement your workouts and maximize results. Learn how to make sustainable dietary choices, balance macros, and develop a healthy relationship with food. Your journey to fitness isn’t complete without the proper nutrition to back it up.",
+    coaching: "Stay on track with interactive virtual coaching that offers flexibility and guidance no matter where you are. Enjoy structured workout plans, progress tracking, and motivational check-ins to ensure you’re hitting your goals. Get the same level of dedication and expertise from the comfort of your own home."
+  };
+
+  tabs.forEach((tab, index) => {
+    tab.addEventListener("click", () => {
+      // Update active class for tabs
+      document.querySelector(".program-tab.active").classList.remove("active");
+      tab.classList.add("active");
+
+      // Update content
+      content.textContent = programDetails[tab.dataset.program];
+
+      // Move the ::before element
+      const width = tabsContainer.offsetWidth / tabs.length;
+      tabsContainer.style.setProperty("--tab-indicator-transform", `translateX(${width * index}px)`);
+    });
+  });
+});
+
+  </script>
+</body>
+</html>
