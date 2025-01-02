@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gym Mode Toggle</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background: #1a1a1a;
+            font-family: Arial, sans-serif;
+        }
+
+        .gym-mode-container {
+            text-align: center;
+            color: white;
+        }
+
+        .gym-mode-text {
+            font-size: 7rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            color: #555;
+            text-shadow: 0 0 10px transparent;
+            transition: all 0.5s ease-in-out;
+        }
+
+        .gym-mode-text.on {
+            color: #FF610C;
+            text-shadow: 0 0 10px #FF610C, 0 0 20px #FF840C, 0 0 30px #FF610C;
+            animation: neonBlink 1s infinite alternate;
+        }
+
+        @keyframes neonBlink {
+            0% {
+                text-shadow: 0 0 10px #FF610C, 0 0 20px #FF840C, 0 0 30px #FF610C;
+            }
+            100% {
+                text-shadow: 0 0 20px #FF610C, 0 0 30px #FF840C, 0 0 40px #FF610C;
+            }
+        }
+
+        .toggle {
+            width: 120px;
+            height: 60px;
+            background: #555;
+            border-radius: 30px;
+            position: relative;
+            cursor: pointer;
+            margin: 0 auto;
+            transition: background 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 10px;
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .toggle.on {
+            background: linear-gradient(to right, #FF610C, #FF840C);
+            box-shadow: 0 0 15px #FF610C;
+        }
+
+        .toggle-circle {
+            width: 50px;
+            height: 50px;
+            background: white;
+            border-radius: 50%;
+            position: absolute;
+            top: 5px;
+            left: 5px;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .toggle.on .toggle-circle {
+            left: 80px;
+        }
+
+        .toggle-text {
+            position: absolute;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .toggle-text.on {
+            left: 15px;
+            opacity: 0;
+        }
+
+        .toggle-text.off {
+            right: 15px;
+            opacity: 1;
+        }
+
+        .toggle.on .toggle-text.off {
+            opacity: 0;
+        }
+
+        .toggle.on .toggle-text.on {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="gym-mode-container">
+        <div id="gymMode" class="gym-mode-text">Gym Mode</div>
+        <div id="toggle" class="toggle">
+            <span class="toggle-text on">ON</span>
+            <div class="toggle-circle"></div>
+            <span class="toggle-text off">OFF</span>
+        </div>
+    </div>
+
+    <script>
+        const gymMode = document.getElementById('gymMode');
+        const toggle = document.getElementById('toggle');
+
+        toggle.addEventListener('click', () => {
+            toggle.classList.toggle('on');
+            if (toggle.classList.contains('on')) {
+                gymMode.classList.add('on');
+                // Wait for 5 seconds before redirecting
+                setTimeout(() => {
+                    window.location.href = 'main.html';
+                }, 4000);
+            } else {
+                gymMode.classList.remove('on');
+            }
+        });
+    </script>
+  <script>
+    // Refresh the page if the user navigates back
+    window.addEventListener('pageshow', (event) => {
+        if (event.persisted) {
+            window.location.reload();
+        }
+    });
+</script>
+</body>
+</html>
